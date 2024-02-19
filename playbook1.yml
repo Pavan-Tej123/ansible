@@ -1,0 +1,31 @@
+---
+- name: apache installation
+  become: true
+  hosts: web
+  vars:
+    name1: apache2
+
+  tasks:
+
+  - name: update the packages
+    command: apt update
+
+  - name: install apache2
+    apt:
+      name: "{{ name1 }}"
+      state: present
+
+  - name: apache service
+    service:
+      name: "{{ name1 }}"
+      state: started
+
+  - name: restart apache2
+    service:
+      name: "{{ name1 }}"
+      state: restarted
+
+  - name: copy index.html
+    copy:
+      src: /home/ubuntu/index.html
+      dest: /var/www/html/index.html

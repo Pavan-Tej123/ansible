@@ -1,0 +1,12 @@
+[web]
+172.31.81.240
+
+[db]
+172.31.82.140
+
+[webservers:children]
+web
+
+[dbservers:children]
+db
+
